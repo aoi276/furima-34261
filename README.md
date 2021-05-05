@@ -2,14 +2,16 @@
 
 ##  usersテーブル
 
-| Column     | | Type   | Options     |
-| ---------- | | ------ | ----------- |
-| nickname   | | string | null: false |
-| email      | | string | null: false |
-| password   | | string | null: false |
-| name1      | | string | null: false |
-| name2      | | string | null: false |
-| birathday  | | string | null: false |
+| Column             | Type   | Options                 |
+| ------------------ | ------ | ----------------------- |
+| nickname           | string | null: false             |
+| email              | string | null: false unique:true |
+| encrypted_password | string | null: false             |
+| first_name         | string | null: false             |
+| second_name        | string | null: false             |
+| first_kname        | string | null: false             |
+| second_kname       | string | null: false             |
+| birathday          | date   | null: false             |
 
 ### Association
 hasmany :items
@@ -20,20 +22,14 @@ hasmany :buyers
 
 | Column     | Type       | Options                        |
 | ---------- | ---------- | ------------------------------ |
-| image      |            |                                | 
 | itemname   | string     | null: false                    |
 | text       | text       | null: false                    |
-| category   | string     | null: false                    |
-| state      | string     | null: false                    |
-| burden     | integer    | null: false                    |
-| locality   | string     | null: false                    |
-| delivery   | string     | null: false                    |
-| price      | integer    | null: false                    |
+| genre      | integer    | null: false                    |
 | user       | references | null: false, foreign_key: true |
 
 ### Association
-belongs :user
-has_one :buyers
+belongs_to :user
+has_one :buyer
 
 ##  buyersテーブル
 
@@ -43,21 +39,21 @@ has_one :buyers
 | item         | references  | null: false, foreign_key: true |
 
 ### Association
-belongs :user
-belongs :item
-has_one :addresses
+belongs_to :user
+belongs_to :item
+has_one :addresse
 
 ##  Addressesテーブル
 
-| Column       | Type        | Options                        |
-| ------------ | ----------- | ------------------------------ |
-| postal_code  | integer    | null: false                     |
-| prefectures  | string     | null: false                     |
-| municipality | string     | null: false                     |
-| street       | string     | null: false                     |
-| building     | string     | null: false                     |
-| phone        | integer    | null: false                     |
-| buyer        | references  | null: false, foreign_key: true |
+| Column       | Type       | Options                        |
+| ------------ | ---------- | ------------------------------ |
+| postal_code  | integer    | null: false                    |
+| genre        | integer    | null: false                    |
+| municipality | string     | null: false                    |
+| street       | string     | null: false                    |
+| building     | string     | null: false                    |
+| phone        | string     | null: false                    |
+| buyer        | references | null: false, foreign_key: true |
 
 ### Association
-belongs :buyers
+belongs_to :buyer
