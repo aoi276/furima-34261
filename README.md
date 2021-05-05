@@ -29,7 +29,7 @@ hasmany :buyers
 | locality   | string     | null: false                    |
 | delivery   | string     | null: false                    |
 | price      | integer    | null: false                    |
-| user       | reference  | null: false, foreign_key: true |
+| user       | references | null: false, foreign_key: true |
 
 ### Association
 belongs :user
@@ -37,20 +37,27 @@ has_one :buyers
 
 ##  buyersテーブル
 
-| Column       | Type       | Options                        |
-| ------------ | ---------- | ------------------------------ |
-| card_info    | integer    | null: false                    |
-| exp_date     | integer    | null: false                    |
-| security     | integer    | null: false                    | 
-| postal_code  | integer    | null: false                    |
-| prefectures  | string     | null: false                    |
-| municipality | string     | null: false                    |
-| street       | string     | null: false                    |
-| building     | string     | null: false                    |
-| phone        | integer    | null: false                    |
-| user         | reference  | null: false, foreign_key: true |
-| item         | reference  | null: false, foreign_key: true |
+| Column       | Type        | Options                        |
+| ------------ | ----------- | ------------------------------ |
+| user         | references  | null: false, foreign_key: true |
+| item         | references  | null: false, foreign_key: true |
 
 ### Association
 belongs :user
 belongs :item
+has_one :addresses
+
+##  Addressesテーブル
+
+| Column       | Type        | Options                        |
+| ------------ | ----------- | ------------------------------ |
+| postal_code  | integer    | null: false                     |
+| prefectures  | string     | null: false                     |
+| municipality | string     | null: false                     |
+| street       | string     | null: false                     |
+| building     | string     | null: false                     |
+| phone        | integer    | null: false                     |
+| buyer        | references  | null: false, foreign_key: true |
+
+### Association
+belongs :buyers
