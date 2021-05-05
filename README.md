@@ -11,7 +11,7 @@
 | second_name        | string | null: false             |
 | first_kname        | string | null: false             |
 | second_kname       | string | null: false             |
-| birathday          | date   | null: false             |
+| birthday           | date   | null: false             |
 
 ### Association
 has_many :items
