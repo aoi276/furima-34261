@@ -14,18 +14,23 @@
 | birathday          | date   | null: false             |
 
 ### Association
-hasmany :items
-hasmany :buyers
+has_many :items
+has_many :buyers
 
 
 ##  itemsテーブル
 
-| Column     | Type       | Options                        |
-| ---------- | ---------- | ------------------------------ |
-| itemname   | string     | null: false                    |
-| text       | text       | null: false                    |
-| genre      | integer    | null: false                    |
-| user       | references | null: false, foreign_key: true |
+| Column      | Type       | Options                        |
+| ----------- | ---------- | ------------------------------ |
+| item_name   | string     | null: false                    |
+| text        | text       | null: false                    |
+| state_id    | integer    | null: false                    |
+| burden_id   | integer    | null: false                    |
+| locality_id | integer    | null: false                    |
+| delivery_id | integer    | null: false                    |
+| category_id | integer    | null: false                    |
+| price       | integer    | null: false                    |
+| user        | references | null: false, foreign_key: true |
 
 ### Association
 belongs_to :user
@@ -47,11 +52,11 @@ has_one :addresse
 
 | Column       | Type       | Options                        |
 | ------------ | ---------- | ------------------------------ |
-| postal_code  | integer    | null: false                    |
-| genre        | integer    | null: false                    |
+| postal_code  | string     | null: false                    |
+| locality_id  | integer    | null: false                    |
 | municipality | string     | null: false                    |
 | street       | string     | null: false                    |
-| building     | string     | null: false                    |
+| building     | string     |                                |
 | phone        | string     | null: false                    |
 | buyer        | references | null: false, foreign_key: true |
 
