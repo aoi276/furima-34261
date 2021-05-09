@@ -16,7 +16,6 @@ RSpec.describe User, type: :model do
         @user.password_confirmation = 'a00000'
         expect(@user).to be_valid
       end
-
     end
 
     context '新規登録できないとき' do
@@ -76,6 +75,12 @@ RSpec.describe User, type: :model do
         expect(@another_user.errors.full_messages).to include("Email has already been taken")
       end
 
+      it '@を含めない場合は登録できない' do
+        @user.email = 'hotmail.com'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Email is invalid")
+      end
+
       it 'passwordが5文字以下では登録できない' do
         @user.password = '00000'
         @user.password_confirmation = '00000'
@@ -87,6 +92,12 @@ RSpec.describe User, type: :model do
         @user.password_confirmation = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      end
+
+      it '全角英数混合では登録できない' do
+        @user.password = 'ａａａ１１１'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password is invalid")
       end
 
       it 'passwordが数字だけでは登録できない' do

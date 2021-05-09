@@ -6,8 +6,8 @@ class User < ApplicationRecord
 
   with_options presence: true do
     validates :nickname
-    validates :first_name, format: { with: /\A[ぁ-んァ-ン一-龥]/}
-    validates :second_name, format: { with: /\A[ぁ-んァ-ン一-龥]/}
+    validates :first_name, format: { with: /\A[ぁ-んァ-ン一-龥々一]+\z/ }
+    validates :second_name, format: { with: /\A[ぁ-んァ-ン一-龥々一]+\z/ }
     validates :first_kname, format: { with: /[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+/ }
     validates :second_kname, format: { with: /[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+/ }
     validates :birthday
