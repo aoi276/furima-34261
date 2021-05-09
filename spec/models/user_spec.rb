@@ -11,11 +11,12 @@ RSpec.describe User, type: :model do
         expect(@user).to be_valid
       end
 
-      it 'passwordとpassword＿confirmationが6文字以上あれば登録できる' do
-        @user.password = '000000'
-        @user.password_confirmation = '000000'
+      it 'passwordとpassword＿confirmationが半角英数字混合で6文字以上あれば登録できる' do
+        @user.password = 'a00000'
+        @user.password_confirmation = 'a00000'
         expect(@user).to be_valid
       end
+
     end
 
     context '新規登録できないとき' do
@@ -86,6 +87,42 @@ RSpec.describe User, type: :model do
         @user.password_confirmation = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      end
+
+      it 'passwordが数字だけでは登録できない' do
+        @user.password = '000000'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password is invalid")
+      end
+
+      it 'passwordが英語だけでは登録できない' do
+        @user.password = 'aaaaaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password is invalid")
+      end
+
+      it 'ユーザーの名前は、全角（漢字・ひらがな・カタカナ）でなければ登録できない' do
+        @user.first_name = 'eigo'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name is invalid")
+      end
+
+      it 'ユーザーの苗字は、全角（漢字・ひらがな・カタカナ）でなければ登録できない' do
+        @user.second_name = 'eigo'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Second name is invalid")
+      end
+
+      it 'ユーザーの名前のフリガナは、全角（カタカナ）でなければ登録できない' do
+        @user.first_kname = 'かな'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First kname is invalid")
+      end
+
+      it 'ユーザーの苗字のフリガナは、全角（カタカナ）でなければ登録できない' do
+        @user.second_kname = 'かな'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Second kname is invalid")
       end
     end
   end
