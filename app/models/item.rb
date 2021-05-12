@@ -6,9 +6,9 @@ class Item < ApplicationRecord
   belongs_to :delivery
   belongs_to :category
 
-  with_options precence: true do
-    validates :item_name, 
-    validates :text, 
+  with_options presence: true do
+    validates :item_name
+    validates :text
     validates :state_id, numericality: {other_than: 1}
     validates :burden_id, numericality: {other_than: 1}
     validates :locality_id, numericality: {other_than: 1}
