@@ -5,6 +5,7 @@ class Item < ApplicationRecord
   belongs_to :locality
   belongs_to :delivery
   belongs_to :category
+  has_one_attached :image
 
   validates :item_name, :text, presence: true
 

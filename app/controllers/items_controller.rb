@@ -21,6 +21,6 @@ before_action :authenticate_user!, only:[:new]
   private
 
   def item_params
-    params.require(:item).permit(:item_name, :text, :category_id, :state_id, :burden_id, :locality_id, :delivery_id)
+    params.require(:item).permit(:image, :item_name, :text, :category_id, :state_id, :burden_id, :locality_id, :delivery_id)
   end
 end
