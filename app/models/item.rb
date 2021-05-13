@@ -6,13 +6,12 @@ class Item < ApplicationRecord
   belongs_to :delivery
   belongs_to :category
 
-  with_options presence: true do
-    validates :item_name
-    validates :text
-    validates :state_id, numericality: {other_than: 1}
-    validates :burden_id, numericality: {other_than: 1}
-    validates :locality_id, numericality: {other_than: 1}
-    validates :delivery_id, numericality: {other_than: 1}
-    validates :category_id, numericality: {other_than: 1}
-  end
+  validates :item_name, :text, presence: true
+
+  validates :state_id,    numericality: { other_than: 1 }
+  validates :burden_id,   numericality: { other_than: 1 }
+  validates :locality_id, numericality: { other_than: 1 }
+  validates :delivery_id, numericality: { other_than: 1 }
+  validates :category_id, numericality: { other_than: 1 }
+
 end
