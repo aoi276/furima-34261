@@ -9,15 +9,18 @@ class Item < ApplicationRecord
   has_one_attached :image
   
   with_options presence: true do
+    validates :user
     validates :item_name
     validates :text
     validates :image
-    validates :price
-
-    validates :state_id,    numericality: { other_than: 1 }
-    validates :burden_id,   numericality: { other_than: 1 }
-    validates :locality_id, numericality: { other_than: 1 }
-    validates :delivery_id, numericality: { other_than: 1 }
-    validates :category_id, numericality: { other_than: 1 }
+    validates :price, format: { with: /\A[-]?[0-9]+(\.[0-9]+)?\z/ },
+                      inclusion: { in: 300..9_999_999 }
+    with_options numericality: { other_than: 1 } do
+      validates :state_id
+      validates :burden_id
+      validates :locality_id
+      validates :delivery_id
+      validates :category_id
+    end
   end
 end
