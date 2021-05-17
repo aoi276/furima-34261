@@ -7,7 +7,7 @@ RSpec.describe Item, type: :model do
 
   describe '商品出品' do
     context '商品が出品できるとき' do
-      it 'item_nameとtext、state_id、burden_id、locality_id、delivery_id、category＿idがあれば登録できる' do
+      it 'item_nameとtext、state_id、burden_id、locality_id、delivery_id、category＿id、priceがあれば登録できる' do
         expect(@item).to be_valid
       end
     end
@@ -60,6 +60,12 @@ RSpec.describe Item, type: :model do
         @item.category_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
+      end
+
+      it 'priceが空では登録できない' do
+        @item.price = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price can't be blank")
       end
 
       it 'userが紐付いていないと保存できないこと' do

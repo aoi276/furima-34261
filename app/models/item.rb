@@ -12,7 +12,8 @@ class Item < ApplicationRecord
     validates :item_name
     validates :text
     validates :image
-    
+    validates :price
+
     validates :state_id,    numericality: { other_than: 1 }
     validates :burden_id,   numericality: { other_than: 1 }
     validates :locality_id, numericality: { other_than: 1 }
