@@ -63,31 +63,31 @@ RSpec.describe Item, type: :model do
       end
 
       it 'state_idに1が選択されている場合は登録できない' do
-        @item.state_id = '1'
+        @item.state_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("State must be other than 1")
       end
 
       it 'burden_idに1が選択されている場合は登録できない' do
-        @item.burden_id = '1'
+        @item.burden_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Burden must be other than 1")
       end
 
       it 'locality_idに1が選択されている場合は登録できない' do
-        @item.locality_id = '1'
+        @item.locality_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Locality must be other than 1")
       end
 
       it 'delivery_idに1が選択されている場合は登録できない' do
-        @item.delivery_id = '1'
+        @item.delivery_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery must be other than 1")
       end
 
       it 'category_idに1が選択されている場合は登録できない' do
-        @item.category_id = '1'
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category must be other than 1")
       end
@@ -123,13 +123,13 @@ RSpec.describe Item, type: :model do
       end
 
       it '商品価格が299円以下では出品できない' do
-        @item.price = '10'
+        @item.price = 10
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not included in the list")
       end
 
       it '商品価格が10_000_000円以上は出品できない' do
-        @item.price = '10000000'
+        @item.price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not included in the list")
       end
