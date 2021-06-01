@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :item do
-
     item_name            { Faker::Name.initials(number: 1) }     
     text                 { Faker::Lorem.sentence }
     state_id             { Faker::Number.between(from: 2, to: 7) }
