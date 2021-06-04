@@ -10,7 +10,7 @@ RSpec.describe BuyerAddress, type: :model do
     end
 
     context '商品購入が出来るとき' do
-      it 'postal_code、locality_id、municipality、street、phoneがあれば登録できる' do
+      it 'postal_code、locality_id、municipality、street、phone、tokenがあれば登録できる' do
         expect(@buyer_address).to be_valid
       end
 
@@ -69,6 +69,12 @@ RSpec.describe BuyerAddress, type: :model do
         @buyer_address.valid?
         expect(@buyer_address.errors.full_messages).to include("Phone is invalid")
       end
+
+      it 'tokenが空では登録ができない' do
+        @buyer_address.token = nil
+        @buyer_address.valid?
+        expect(@buyer_address.errors.full_messages).to include("Token can't be blank")
+      end
     
       it 'userが紐づいていないと登録できない' do
         @buyer_address.user_id = nil
@@ -82,5 +88,5 @@ RSpec.describe BuyerAddress, type: :model do
         expect(@buyer_address.errors.full_messages).to include("Item can't be blank")
       end
     end
-  end
+  end 
 end
