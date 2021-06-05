@@ -1,14 +1,13 @@
 class BuyersController < ApplicationController
   before_action :authenticate_user!, only: [:index]
-  
+  before_action :set_item, only: [:index, :create]
+  before_action :sold_out_item, only: [:index]
 
   def index
     @buyer_address = BuyerAddress.new
-    @item = Item.find(params[:item_id])
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @buyer_address = BuyerAddress.new(buyer_address_params)
     if @buyer_address.valid?
       pay_item
@@ -33,4 +32,15 @@ class BuyersController < ApplicationController
         currency: 'jpy'
       )
   end
+
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
+
+  def sold_out_item
+    if @item.buyer.present?
+      redirect_to root_path
+    end
+  end
+
 end
