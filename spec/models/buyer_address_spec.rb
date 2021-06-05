@@ -29,7 +29,7 @@ RSpec.describe BuyerAddress, type: :model do
       end
 
       it 'postal_codeがハイフンを含んだ正しい形式でないと登録できない' do
-        @buyer_address.postal_code = 000-0000
+        @buyer_address.postal_code = '1234567'
         @buyer_address.valid?
         expect(@buyer_address.errors.full_messages).to include("Postal code is invalid")
       end
@@ -66,6 +66,12 @@ RSpec.describe BuyerAddress, type: :model do
 
       it 'phoneが11桁以内の数値でない場合登録できない' do
         @buyer_address.phone = "aaaaaaaaaaa"
+        @buyer_address.valid?
+        expect(@buyer_address.errors.full_messages).to include("Phone is invalid")
+      end
+
+      it 'phoneが全角数値では入力できない' do
+        @buyer_address.phone = "０００００００００００"
         @buyer_address.valid?
         expect(@buyer_address.errors.full_messages).to include("Phone is invalid")
       end
