@@ -38,7 +38,7 @@ class BuyersController < ApplicationController
   end
 
   def sold_out_item
-    if current_user.id == @item.user_id
+    if current_user.id == @item.user_id && current_user.id
       redirect_to root_path
     end
   end
