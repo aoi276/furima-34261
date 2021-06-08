@@ -77,7 +77,7 @@ RSpec.describe BuyerAddress, type: :model do
       end
 
       it 'phoneが12桁以上の数字では登録できない' do
-        @buyer_address.phone = 000000000000
+        @buyer_address.phone = "00000000000000"
         @buyer_address.valid?
         expect(@buyer_address.errors.full_messages).to include("Phone is invalid")
       end
