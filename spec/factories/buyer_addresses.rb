@@ -1,0 +1,11 @@
+FactoryBot.define do
+  factory :buyer_address do
+    postal_code         { '000-0000' }
+    locality_id         { Faker::Number.between(from: 2, to: 48) }
+    municipality        { '新宿区新宿' }
+    street              { '0-0-0' }
+    building            { '東京ハイツ' }
+    phone               { "000000000000" }
+    token               { "tok_abcdefghijk00000000000000000" }
+  end
+end
