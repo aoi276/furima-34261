@@ -62,6 +62,10 @@ group :development do
   gem 'rubocop-rails'
 end
 
+group :production do
+  gem 'unicorn', '5.4.1'
+end
+
 gem 'devise'
 gem 'active_hash'
 gem 'mini_magick'
