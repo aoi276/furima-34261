@@ -7,13 +7,13 @@ class Item < ApplicationRecord
   belongs_to :category
   belongs_to :user
   has_one :buyer
-  has_many_attached :images
+  has_one_attached :image
   
   with_options presence: true do
     validates :user
     validates :item_name
     validates :text
-    validates :images
+    validates :image
     validates :price, format: { with: /\A[-]?[0-9]+(\.[0-9]+)?\z/ },
                       inclusion: { in: 300..9_999_999 }
     with_options numericality: { other_than: 1 } do
