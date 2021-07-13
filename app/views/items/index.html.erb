@@ -131,9 +131,7 @@
         <%= link_to item_path(item) do %>
         <div class='item-img-content'>
 
-          <% item.images.each do |image| %>
-           <%= image_tag image, class: "item-img" %>
-          <% end %>
+            <%= image_tag item.images[0], class: "item-img" %>
           
           <% if item.buyer.present? %>
             <div class='sold-out'>
