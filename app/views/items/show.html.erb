@@ -6,13 +6,13 @@
       <%= @item.item_name %>
     </h2>
     <div class="item-img-content">
-      <%= image_tag @item.image, class:"item-box-img" %>
+      <%= image_tag @item.images[0], class:"item-box-img" %>
     
-    <% if @item.buyer.present? %>
-      <div class="sold-out">
-        <span>Sold Out!!</span>
-      </div>
-    <% end %>
+      <% if @item.buyer.present? %>
+        <div class="sold-out">
+          <span>Sold Out!!</span>
+        </div>
+      <% end %>
     
     </div>
     <div class="item-price-box">
