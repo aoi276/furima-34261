@@ -21,11 +21,7 @@
         </p>
         <%= f.file_field :images, name: 'item[images][]', id:"item-image"%>
       </div>
-
-      <% if @item.image? %>
         <div id = "image-list"></div>
-      <% end %>
-
     </div>
 
     <% @item.images.each do |image| %>
