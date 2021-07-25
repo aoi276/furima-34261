@@ -89,6 +89,28 @@
   margin-bottom: 15px;
 }
 
+.image-box {
+  display: flex;
+  max-width: 100%;
+  height: min-content;
+  flex-wrap: wrap;
+}
+
+.image-element {
+  width: 25%;
+  height: 100%;
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+}
+
+.images {
+  width: 100%;
+  height: 100%;
+}
+
 /* /出品画像 */
 
 /* 商品名と商品説明 */
@@ -107,16 +129,6 @@
 
 .items-explain {
   margin-top: 2vh;
-}
-
-.photo {
-  width: 100%;
-  height: 100%;
-}
-
-.images {
-  width: 100%;
-  height: 100%;
 }
 
 /* /商品名と商品説明 */
